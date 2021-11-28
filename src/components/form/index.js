@@ -6,6 +6,7 @@ function Form(props) {
 
   const [urlValue, setURLValue] = useState('');
   const [methodValue, setMethodValue] = useState('');
+  const [methodSelected, setMethodSelect] = useState('');
 
   function handleURLInput(e) {
     // testing with https://swapi.dev/api/people
@@ -16,6 +17,19 @@ function Form(props) {
   function handleClick(e) {
     let method = e.target.id.toUpperCase();
     setMethodValue(method);
+
+    handleSelectedMethodStyle(e.target);
+  }
+
+  function handleSelectedMethodStyle(target) {
+    // if a method is already selected remove it
+    if (methodSelected) {
+      methodSelected.classList.remove('selected');
+    }
+
+    // set methodSelected state to current target and add selected class for scss styling
+    setMethodSelect(target);
+    target.classList.add('selected');
   }
 
   function handleSubmit(e) {

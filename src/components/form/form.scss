@@ -29,6 +29,10 @@ form {
           background: black;
           color: white;
         }
+
+       &.selected {
+         border: black solid 4px;
+       }
       }
     }
   }
