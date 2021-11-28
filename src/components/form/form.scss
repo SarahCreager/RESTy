@@ -16,6 +16,7 @@ form {
     margin: 1rem 0;
 
     &.methods {
+
       span {
         cursor: pointer;
         margin-right: 1rem;
@@ -24,9 +25,9 @@ form {
         border-radius: 4px;
         transition: all 0.5s ease;
 
-        &:hover, &.active {
-          background: rgb(224, 224, 224);
-
+        &:active, &:focus, &:hover {
+          background: black;
+          color: white;
         }
       }
     }
