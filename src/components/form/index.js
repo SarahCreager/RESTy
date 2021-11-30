@@ -1,15 +1,18 @@
-import React from 'react';
+
 import { useState } from 'react';
 import './form.scss';
 
 function Form(props) {
-
+  // state that holds the URL inputted
   const [urlValue, setURLValue] = useState('');
+  // state that holds the method name (GET, PUT, etc)
   const [methodValue, setMethodValue] = useState('');
+  // state that holds the particular span selected so it can be styled
   const [methodSelected, setMethodSelect] = useState('');
+  // state of form data entered in text field for PUT
+  const [updateFormData, setUpdatedFormData] = useState('');
 
   function handleURLInput(e) {
-    // testing with https://swapi.dev/api/people
     let { value } = e.target;
     setURLValue(value);
   }
@@ -17,28 +20,30 @@ function Form(props) {
   function handleClick(e) {
     let method = e.target.id.toUpperCase();
     setMethodValue(method);
-
     handleSelectedMethodStyle(e.target);
   }
 
   function handleSelectedMethodStyle(target) {
-    // if a method is already selected remove it
+    // if a method is already selected remove class
     if (methodSelected) {
       methodSelected.classList.remove('selected');
     }
 
-    // set methodSelected state to current target and add selected class for scss styling
+    // set state to current span and add selected class to style
     setMethodSelect(target);
     target.classList.add('selected');
   }
 
   function handleSubmit(e) {
     e.preventDefault();
+
     const formData = {
-      method: methodValue,
+      method: methodValue || 'GET',
       url: urlValue,
+      body: updateFormData
     };
-    props.handleApiCall(formData);
+
+    props.setRequestParams(formData);
   }
 
   return (
@@ -56,8 +61,12 @@ function Form(props) {
           <button type="submit">GO!</button>
         </label>
         <label>
-          <pre>{methodValue === 'POST' || methodValue === 'PUT' ? <input type="textarea"
-            name="textValue" /> : null}</pre>
+          <pre>
+            {
+              methodValue === 'POST' || methodValue === 'PUT'
+                ? <textarea onChange={(e) => setUpdatedFormData(e.target.value)}></textarea>
+                : null}
+          </pre>
         </label>
       </form>
     </>

@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen} from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import Results from '../components/results/index.js';
@@ -13,3 +13,6 @@ describe('Testing Results component', () => {
     expect(displayText).toHaveTextContent(dataProp.text);
   });
 });
+
+
+
