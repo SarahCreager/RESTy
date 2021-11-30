@@ -7,10 +7,9 @@ describe('Testing Form component', () => {
 
     let callback = jest.fn();
 
-    render( <Form handleApiCall={callback}/> );
+    render( <Form setRequestParams={callback}/> );
 
     let button = screen.getByRole('button');
-    // let input = screen.getByRole('textbox');
 
     fireEvent.click(button);
     expect(callback).toHaveBeenCalled();
