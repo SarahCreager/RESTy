@@ -50,24 +50,27 @@ function App() {
   };
 
   const [state, dispatch] = useReducer(reducer, intialState);
-  
-  useEffect(() => {
-    async function callApi() {
 
-      if (state.requestParams.url) {
-        dispatch({type: 'ADD_HISTORY', payload: state.requestParams});
-        let API_URL = state.requestParams.url;
-        const response = await axios.get(API_URL);
-        const data = {
-          headers: response.headers,
-          count: response.data.count,
-          response: response.data.results
-        };
-        dispatch({ type: 'ADD_DATA', payload: data});
-      }
+  useEffect(() => {
+    if (state.requestParams.method) {
+      callApi();
     }
-    callApi();
   }, [state.requestParams]);
+
+  async function callApi() {
+
+    if (state.requestParams.url) {
+      dispatch({type: 'ADD_HISTORY', payload: state.requestParams});
+      let API_URL = state.requestParams.url;
+      const response = await axios.get(API_URL);
+      const data = {
+        headers: response.headers,
+        count: response.data.count,
+        response: response.data.results
+      };
+      dispatch({ type: 'ADD_DATA', payload: data});
+    }
+  }
 
   return (
     <React.Fragment>
