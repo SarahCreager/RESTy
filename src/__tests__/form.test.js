@@ -7,7 +7,7 @@ describe('Testing Form component', () => {
 
     let callback = jest.fn();
 
-    render( <Form setRequestParams={callback}/> );
+    render( <Form dispatch={callback}/> );
 
     let button = screen.getByRole('button');
 

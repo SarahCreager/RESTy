@@ -2,7 +2,7 @@
 
 ## Problem Domain
 
-Part 3 of a 4-Phase build of the RESTy application. The initial build set up the file structure in order to progressively build the application in a scalable manner. This application can receive user input in preparation of connecting to live APIs, using the useState() hook in our functional components. Now the application can connect with APIs, running live requests.
+Part 4 of a 4-Phase build of the RESTy application. The initial build set up the file structure in order to progressively build the application in a scalable manner. This application can receive user input in preparation of connecting to live APIs, using the useState() hook in our functional components. Now the application can connect with APIs, running live requests. The application can track history of API calls and implements useReducer().
 
 ## Features 
 
@@ -19,6 +19,10 @@ Part 3 of a 4-Phase build of the RESTy application. The initial build set up the
 * Refactored application methods to allow for browser side HTTP requests to be sent. The user can set a url, method, and request body.
 
 * Make sure all relavent request and response data is displayed to the user.
+
+* Replaced any component state managements to use derived state from useReducer with a reducer function and intitial state.
+
+* Tracks every API call and storing it in history
 
 ## Deployment Link
 
