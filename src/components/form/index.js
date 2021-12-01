@@ -9,8 +9,7 @@ function Form(props) {
   const [methodValue, setMethodValue] = useState('');
   // state that holds the particular span selected so it can be styled
   const [methodSelected, setMethodSelect] = useState('');
-  // state of form data entered in text field for PUT
-  const [updateFormData, setUpdatedFormData] = useState('');
+
 
   function handleURLInput(e) {
     let { value } = e.target;
@@ -40,10 +39,9 @@ function Form(props) {
     const formData = {
       method: methodValue || 'GET',
       url: urlValue,
-      body: updateFormData
     };
 
-    props.setRequestParams(formData);
+    props.dispatch({type: 'ADD_REQUESTPARAMS', payload: formData});
   }
 
   return (
@@ -64,7 +62,7 @@ function Form(props) {
           <pre>
             {
               methodValue === 'POST' || methodValue === 'PUT'
-                ? <textarea onChange={(e) => setUpdatedFormData(e.target.value)}></textarea>
+                ? <textarea></textarea>
                 : null}
           </pre>
         </label>
